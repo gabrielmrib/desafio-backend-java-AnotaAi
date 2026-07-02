@@ -1,0 +1,25 @@
+### Cadastra categoria
+POST http://localhost:8080/api/category
+Content-Type: application/json
+
+{
+  "owner": "1234",
+  "description": "teste3",
+  "title": "Teste3"
+}
+
+### traz tods as categorias
+GET http://localhost:8080/api/category
+
+### Atualiza a categoria
+PUT http://localhost:8080/api/category/6a465af1bc607c1ff9980c8a
+Content-Type: application/json
+
+{
+  "owner": "123",
+  "description": "teste2",
+  "title": "Teste2"
+}
+
+### Deleta a categoria
+DELETE http://localhost:8080/api/category/6a465af1bc607c1ff9980c8a

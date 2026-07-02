@@ -1,0 +1,24 @@
+## get all products
+GET http://localhost:8080/api/product
+
+### Cria produto
+POST http://localhost:8080/api/product
+Content-Type: application/json
+
+{
+  "title": "teste",
+  "description": "teste",
+  "owner": "123",
+  "price": 1000,
+  "category": "6a465db9bc607c1ff9980c97"
+}
+### Atualiza produto
+PUT http://localhost:8080/api/product/6a4669b5eeebc5149115bd77
+Content-Type: application/json
+
+{
+  "title": "2teste",
+  "description": "teste",
+  "owner": "123",
+  "price": 555
+}

@@ -34,7 +34,9 @@ public class ProductService {
     public Product update(String id,ProductRequestDTO productDTO){
         Product product = this.productRepository.findById(id).orElseThrow(ProductNotFindExeption::new);
 
-        this.categoryService.getById(productDTO.category()).ifPresent(product::setCategory);
+        if(productDTO.category() != null){
+            this.categoryService.getById(productDTO.category()).ifPresent(product::setCategory);
+        }
         if (!productDTO.title().isEmpty()) product.setTitle(productDTO.title());
         if (!productDTO.description().isEmpty()) product.setDescription(productDTO.description());
         if (!productDTO.owner().isEmpty()) product.setOwner(productDTO.owner());
