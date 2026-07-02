@@ -28,7 +28,6 @@ public class Product {
         this.setTitle(productDTO.title());
         this.setOwner(productDTO.owner());
         this.setPrice(productDTO.price());
-        this.setCategory(productDTO.category());
 
     }
 }

@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import javax.swing.*;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.Callable;
 
 @Service
@@ -56,7 +57,9 @@ public class CategoryService {
         this.categoryRepository.delete(category);
     }
 
-
+    public Optional<Category> getById(String id){
+        return this.categoryRepository.findById(id);
+    }
 
 
 
