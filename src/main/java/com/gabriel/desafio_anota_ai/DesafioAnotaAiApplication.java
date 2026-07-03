@@ -13,3 +13,4 @@ public class DesafioAnotaAiApplication {
 	}
 
 }
+// https://youtu.be/a3tPHH8uwPc?si=C6goLwJT-ETV8sZv&t=4414
