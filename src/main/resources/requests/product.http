@@ -6,7 +6,7 @@ POST http://localhost:8080/api/product
 Content-Type: application/json
 
 {
-  "title": "teste",
+  "title": "Produto para postar no tópico",
   "description": "teste",
   "owner": "123",
   "price": 1000,

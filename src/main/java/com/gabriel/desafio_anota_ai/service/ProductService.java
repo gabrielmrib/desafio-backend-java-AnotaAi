@@ -6,6 +6,8 @@ import com.gabriel.desafio_anota_ai.domain.product.Product;
 import com.gabriel.desafio_anota_ai.domain.product.ProductRequestDTO;
 import com.gabriel.desafio_anota_ai.domain.product.exeptions.ProductNotFindExeption;
 import com.gabriel.desafio_anota_ai.repositories.ProductRepository;
+import com.gabriel.desafio_anota_ai.service.aws.AwsSnsService;
+import com.gabriel.desafio_anota_ai.service.aws.MessageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,8 @@ public class ProductService {
     private ProductRepository productRepository;
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private AwsSnsService awsSnsService;
 
     public List<Product> getAll(){
         return this.productRepository.findAll();
@@ -28,7 +32,9 @@ public class ProductService {
         Category category = this.categoryService.getById(requestDTO.category()).orElseThrow(CategotyNotFindExpeption::new);
         Product product = new Product(requestDTO);
         product.setCategory(category);
+        awsSnsService.publis(new MessageDTO(product.getOwner()));
         return this.productRepository.insert(product);
+
     }
 
     public Product update(String id,ProductRequestDTO productDTO){
@@ -42,6 +48,9 @@ public class ProductService {
         if (!productDTO.owner().isEmpty()) product.setOwner(productDTO.owner());
         if (!productDTO.price().isNaN()) product.setPrice(productDTO.price());
         this.productRepository.save(product);
+
+        awsSnsService.publis(new MessageDTO(product.getOwner()));
+
         return product;
     }
 
